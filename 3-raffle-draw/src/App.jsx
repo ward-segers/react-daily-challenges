@@ -7,7 +7,8 @@ import NameList from './components/NameList';
 function App() {
 
   const [inputValue, setInputValue] = useState('')
-  const [names, setNames] = useState(Array.from(''))
+  const [names, setNames] = useState([])
+  const [pickedNames, setPickedNames] = useState([])
   const [pickedName, setPickedName] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -21,7 +22,12 @@ function App() {
   const handlePick = () => {
     if (names.length === 0) return;
     const randomName = names[Math.floor(Math.random() * names.length)];
+
+    // Remove picked name => use filter method
+    setNames(names.filter(name => name !== randomName))
+
     setPickedName(randomName);
+    setPickedNames((prev) => [...prev, randomName])
     setIsModalOpen(true);
   }
 
@@ -32,13 +38,15 @@ function App() {
     <div className='flex justify-center items-center w-2/3 bg-white mx-auto shadow'>
       <div className='flex flex-col gap-4 justify-center'>
       <h1 className='text-3xl text-gray-800'>Raffle Draw</h1>
-      <NameInput onKeyUp={handleEnter} onChange={(e) => setInputValue(e.target.value)} value={inputValue}/>
-      <NameList names={names}/>
+      <NameInput onKeyDown={handleEnter} onChange={(e) => setInputValue(e.target.value)} value={inputValue}/>
+      {names.length !== 0 && <NameList title= {'Name'} names={names}/>}
 
       <button id='pick' onClick={handlePick}
       className="mx-auto mt-2 mb-2 px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
         Pick a name
       </button>
+
+      {pickedNames.length !== 0 && <NameList title={'Picked Name'} names={pickedNames}/>}
       </div>
 
       {isModalOpen && (

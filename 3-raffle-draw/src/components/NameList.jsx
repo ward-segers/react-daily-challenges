@@ -1,6 +1,6 @@
-export default function NameList({ names }) {
+export default function NameList({ title, names }) {
   return (
-    <div className="overflow-x-auto mt-4">
+    <div className="overflow-x-auto mt-4 mb-2">
       <table className="min-w-full border border-gray-200 rounded-lg">
         <thead className="bg-gray-100">
           <tr>
@@ -8,7 +8,7 @@ export default function NameList({ names }) {
               #
             </th>
             <th className="px-4 py-2 text-left text-sm font-semibold text-gray-600">
-              Name
+              {title}
             </th>
           </tr>
         </thead>

@@ -1,5 +1,5 @@
-export default function NameInput({onKeyUp, value, onChange}){
+export default function NameInput({onKeyDown, value, onChange}){
     return(
-        <input id="nameInput" className="border" onKeyUp={onKeyUp} onChange={onChange} value={value}></input>
+        <input id="nameInput" className="border" onKeyDown={onKeyDown} onChange={onChange} value={value}></input>
     );
 }
