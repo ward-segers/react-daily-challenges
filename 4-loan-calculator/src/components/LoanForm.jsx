@@ -1,7 +1,7 @@
 export default function LoanForm({cost, setCost, numberOfPayments, 
     setNumberOfPayments, 
     calculateEmi}) {
-        const handleSubmit = (e) {
+        const handleSubmit = (e) => {
             e.preventDefault();
             calculateEmi();
         }
